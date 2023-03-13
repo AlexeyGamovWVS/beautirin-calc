@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const FileManagerPlugin = require("filemanager-webpack-plugin");
 const WebpackDashboard = require("webpack-dashboard/plugin");
 const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
-const PAGES = require("./entries.config");
+const PAGES = require("./wentries.config");
 
 module.exports = {
   entry: PAGES.reduce((config, page) => {
@@ -17,10 +17,10 @@ module.exports = {
   }, {}),
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "scripts/[name].[contenthash].js",
+    filename: "scripts/[name].js",
     library: "[name]",
     publicPath: "",
-    assetModuleFilename: path.join("resources", "[name].[contenthash][ext]"),
+    assetModuleFilename: path.join("resources", "[name].[ext]"),
   },
   module: {
     rules: [
@@ -41,14 +41,14 @@ module.exports = {
         test: /\.mp4$/,
         type: "asset/resource",
         generator: {
-          filename: path.join("resources/videos", "[name].[contenthash][ext]"),
+          filename: path.join("resources/videos", "[name].[ext]"),
         },
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/,
         type: "asset/resource",
         generator: {
-          filename: path.join("resources/images", "[name].[contenthash][ext]"),
+          filename: path.join("resources/images", "[name].[ext]"),
         },
       },
       {
@@ -57,7 +57,7 @@ module.exports = {
         generator: {
           filename: path.join(
             "resources/images/svg",
-            "[name].[contenthash][ext]"
+            "[name].[ext]"
           ),
         },
       },
@@ -65,7 +65,7 @@ module.exports = {
         test: /\.(woff(2)?|eot|ttf|otf)$/,
         type: "asset/resource",
         generator: {
-          filename: path.join("resources/fonts", "[name].[contenthash][ext]"),
+          filename: path.join("resources/fonts", "[name].[ext]"),
         },
       },
       {
@@ -98,7 +98,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: path.join(`styles/`, `[name].[contenthash].css`),
+      filename: path.join(`styles/`, `[name].css`),
     }),
     new FileManagerPlugin({
       events: {
