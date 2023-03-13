@@ -1,0 +1,45 @@
+@import "../../../vendor/fonts/fonts.css";
+@import "./colors.scss";
+
+@mixin title4 {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $title_black;
+  line-height: 1.4;
+  font-size: 20px;
+}
+
+@mixin text16 {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  color: $main;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+@mixin text14 {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  color: $text_black;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+@mixin text12 {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  color: $text_grey;
+  line-height: 16px;
+  font-size: 12px;
+}
+
+@mixin btntext {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: $title_white;
+  font-size: 14px;
+  line-height: 155%;
+  letter-spacing: 0.04em;
+}

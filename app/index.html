@@ -1,12 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beautirin Calculation</title>
-</head>
-<body>
-  <h1>hello</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beautirin Calculation</title>
+  </head>
+  <body class="body">
+    <main class="main">
+      <section class="btr-calc">
+        <div class="btr-calc__container">
+          <form class="btr-form" autocomplete="off">
+            <div class="btr-form__field">
+              <label class="btr-form__label">Выберите цвет ампул</label>
+              <div class="btr-frorm__radio-set">
+                <span class="btr-radio"
+                  ><input
+                    type="radio"
+                    data-t="field:input-color"
+                    aria-invalid="true"
+                    autocomplete="off"
+                    class="btr-radio__control"
+                    id="colorwhite"
+                    name="color"
+                    value="white"
+                  /> </span
+                ><label for="colorwhite" class="btr-radio__label">Белый</label>
+                <span class="btr-radio"
+                  ><input
+                    type="radio"
+                    data-t="field:input-color"
+                    aria-invalid="true"
+                    autocomplete="off"
+                    class="btr-radio__control"
+                    id="colorblack"
+                    name="color"
+                    value="black"
+                    checked
+                  /> </span
+                ><label for="colorblack" class="btr-radio__label">Чёрный</label>
+                <span class="btr-radio"
+                  ><input
+                    type="radio"
+                    data-t="field:input-color"
+                    aria-invalid="true"
+                    autocomplete="off"
+                    class="btr-radio__control"
+                    id="colortrans"
+                    name="color"
+                    value="transparent"
+                  /> </span
+                ><label for="colortrans" class="btr-radio__label"
+                  >Прозрачный</label
+                >
+              </div>
+            </div>
+
+            <!-- <div class="btr-form__field">
+                <span class="Textinput Textinput_view_one-border Textinput_size_m"
+                  ><input
+                    type="text"
+                    data-t="field:input-lastname"
+                    aria-invalid="false"
+                    autocomplete="off"
+                    class="Textinput-Control"
+                    id="lastname"
+                    name="lastname"
+                    value="" /><span class="Textinput-Box"></span></span
+                ><label for="lastname" class="btr-radio__label">Фамилия</label
+                ><span
+                  class="Textinput Textinput_view_default Textinput_size_m g-hidden"
+                  ><input
+                    type="text"
+                    data-t="field:input-surname"
+                    aria-invalid="false"
+                    autocomplete="off"
+                    class="Textinput-Control"
+                    id="surname"
+                    name="surname"
+                    value="" /><span class="Textinput-Box"></span
+                ></span>
+              </div> -->
+            <button
+              class="btr-form__submit"
+              id="btr-form__submit"
+              type="submit"
+            >
+              Отправить заказ
+            </button>
+          </form>
+          <figure class="btr-imagebox">
+            <img
+              class="btr-imagebox__image"
+              src="./images/black-test.png"
+              alt=""
+            />
+          </figure>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

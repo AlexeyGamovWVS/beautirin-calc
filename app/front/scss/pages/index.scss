@@ -1,1 +1,62 @@
 @import "../utils/utils";
+
+.btr-calc {
+  &__container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    padding: 80px 20px 140px;
+    margin: auto;
+    column-gap: 40px;
+  }
+}
+.btr-form {
+  width: 40%;
+  &__field {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    margin-bottom: 48px;
+  }
+  &__label {
+    @include title4;
+  }
+  &__submit {
+    @include btntext;
+    border: none;
+    background: transparent;
+    background-color: $main;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 32px;
+    gap: 16px;
+    cursor: pointer;
+  }
+}
+.btr-frorm__radio-set {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.btr-radio {
+  &__control {
+    display: block;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  &__label {
+    @include text16;
+    margin-right: 48px;
+    cursor: pointer;
+  }
+}
+
+.btr-imagebox {
+  width: 60%;
+  &__image {
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+}
