@@ -20,7 +20,7 @@ module.exports = {
     filename: "scripts/[name].js",
     library: "[name]",
     publicPath: "",
-    assetModuleFilename: path.join("resources", "[name].[ext]"),
+    assetModuleFilename: path.join("resources", "[name][ext]"),
   },
   module: {
     rules: [
@@ -41,31 +41,28 @@ module.exports = {
         test: /\.mp4$/,
         type: "asset/resource",
         generator: {
-          filename: path.join("resources/videos", "[name].[ext]"),
+          filename: path.join("resources/videos", "[name][ext]"),
         },
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/,
         type: "asset/resource",
         generator: {
-          filename: path.join("resources/images", "[name].[ext]"),
+          filename: path.join("resources/images", "[name][ext]"),
         },
       },
       {
         test: /\.svg$/,
         type: "asset/resource",
         generator: {
-          filename: path.join(
-            "resources/images/svg",
-            "[name].[ext]"
-          ),
+          filename: path.join("resources/images/svg", "[name][ext]"),
         },
       },
       {
         test: /\.(woff(2)?|eot|ttf|otf)$/,
         type: "asset/resource",
         generator: {
-          filename: path.join("resources/fonts", "[name].[ext]"),
+          filename: path.join("resources/fonts", "[name][ext]"),
         },
       },
       {
