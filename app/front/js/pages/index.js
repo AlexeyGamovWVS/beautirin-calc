@@ -25,9 +25,10 @@ const initialSize = SIZE_SELECT.value;
 
 const CALC_DATA = {
   color: initialColor,
-  size: +initialSize,
+  size: initialSize,
   imgName: initialColor[0] + initialSize,
   imgSrc: IMAGES_SOURCES[`${initialColor[0]}${initialSize}`],
+  casset: 0,
 };
 
 IMG.src = CALC_DATA.imgSrc;
@@ -52,7 +53,7 @@ function setDisabledAmount() {
   canselDisabledAmount();
   let filterArr = [];
   let newArr = [];
-  const size = `${CALC_DATA.size}`;
+  const { size } = CALC_DATA;
   switch (size) {
     case "2":
       filterArr = ["amount2", "amount3"];
@@ -165,10 +166,17 @@ COLOR_RADIOS.forEach((radio) => {
   });
 });
 
+AMOUNT_RADIOS.forEach((radio) => {
+  radio.addEventListener("change", () => {
+    CALC_DATA.casset = radio.value;
+  });
+});
+
 SUBMIT.addEventListener("click", (e) => {
   e.preventDefault();
   console.log(CALC_DATA.color);
   console.log(CALC_DATA.size);
   console.log(CALC_DATA.imgSrc);
   console.log(CALC_DATA.imgName);
+  console.log(CALC_DATA.casset);
 });
