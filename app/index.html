@@ -13,7 +13,7 @@
           <form class="btr-form" autocomplete="off">
             <div class="btr-form__field">
               <label class="btr-form__label">Выберите цвет ампул</label>
-              <div class="btr-frorm__radio-set">
+              <div class="btr-form__radio-set">
                 <span class="btr-radio"
                   ><input
                     type="radio"
@@ -57,7 +57,12 @@
             </div>
             <div class="btr-form__field">
               <label class="btr-form__label">выберите объём ампул</label>
-              <select class="btr-select" name="size" id="size">
+              <select
+                data-t="field:input-size"
+                class="btr-select"
+                name="size"
+                id="size"
+              >
                 <option class="btr-option" value="2" selected>2 мл</option>
                 <option class="btr-option" value="2,5">2,5 мл</option>
                 <option class="btr-option" value="4">4 мл</option>
@@ -67,6 +72,62 @@
                 <option class="btr-option" value="20">20 мл</option>
                 <option class="btr-option" value="50">50 мл</option>
               </select>
+            </div>
+
+            <div class="btr-form__field">
+              <label class="btr-form__label"
+                >Выберите количество ампул в кассете</label
+              >
+              <div class="btr-form__radio-set">
+                <span class="btr-radio"
+                  ><input
+                    type="radio"
+                    data-t="field:input-amount"
+                    aria-invalid="true"
+                    autocomplete="off"
+                    class="btr-radio__control"
+                    id="amount1"
+                    name="amount"
+                    value="1"
+                  /> </span
+                ><label for="amount1" class="btr-radio__label">1 шт</label>
+                <span class="btr-radio"
+                ><input
+                  type="radio"
+                  data-t="field:input-amount"
+                  aria-invalid="true"
+                  autocomplete="off"
+                  class="btr-radio__control"
+                  id="amount2"
+                  name="amount"
+                  value="2"
+                /> </span
+              ><label for="amount3" class="btr-radio__label">2 шт</label>
+                <span class="btr-radio"
+                  ><input
+                    type="radio"
+                    data-t="field:input-amount"
+                    aria-invalid="true"
+                    autocomplete="off"
+                    class="btr-radio__control"
+                    id="amount3"
+                    name="amount"
+                    value="3"
+                  /> </span
+                ><label for="amount3" class="btr-radio__label">3 шт</label>
+                <span class="btr-radio"
+                  ><input
+                    type="radio"
+                    data-t="field:input-amount"
+                    aria-invalid="true"
+                    autocomplete="off"
+                    class="btr-radio__control"
+                    id="amount5"
+                    name="amount"
+                    value="5"
+                  /> </span
+                ><label for="amount5" class="btr-radio__label">5 шт</label>
+              </div>
             </div>
 
             <!-- <div class="btr-form__field">
