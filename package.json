@@ -1,9 +1,9 @@
 {
-  "name": "webpack-template",
+  "name": "beautyrin-calculator",
   "version": "1.1.0",
-  "description": "Template for fast start coding. Made by WebValley Studio",
+  "description": "Custom calculator for customers of Beautyrin products",
   "main": "index.js",
-  "homepage": "https://alexeygamovwvs.github.io/",
+  "homepage": "https://alexeygamovwvs.github.io/beautirin-calc/",
   "scripts": {
     "dbbuild": "webpack-dashboard -- webpack --config webpack.prod.js",
     "dbdev": "webpack-dashboard -- webpack serve --config webpack.dev.js",
@@ -14,10 +14,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlexeyGamovWVS/wvs-webpack-tmp.git"
+    "url": "git+https://github.com/AlexeyGamovWVS/beautirin-calc.git"
   },
   "bugs": {
-    "url": "https://github.com/AlexeyGamovWVS/wvs-webpack-tmp/issues"
+    "url": "https://github.com/AlexeyGamovWVS/beautirin-calc/issues"
   },
   "author": "WebValley Studio",
   "license": "ISC",
@@ -70,7 +70,6 @@
   },
   "dependencies": {
     "core-js": "^3.27.2",
-    "gulp": "^4.0.2",
     "swiper": "^8.4.6"
   }
 }
