@@ -7,7 +7,6 @@ const IMG = document.querySelector(".btr-imagebox__image");
 const COLOR_RADIOS = Array.from(
   CALC.querySelectorAll('input[data-t="field:input-color"]')
 );
-console.log(COLOR_RADIOS);
 const SIZE_SELECT = CALC.querySelector("#size");
 const AMOUNT_RADIOS = Array.from(
   CALC.querySelectorAll('input[data-t="field:input-amount"]')

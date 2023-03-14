@@ -31,16 +31,12 @@ import {
 function setInitialState(data, form, images, prices) {
   data.color = form.COLOR_RADIOS.find((radio) => radio.checked).value;
   data.size = +form.SIZE_SELECT.value;
-  data.prevSize = +form.SIZE_SELECT.value;
   data.imgName = data.color[0] + data.size;
   data.imgSrc = images[data.imgName];
-  data.prevImgSrc = data.imgSrc;
   getAmpulaPrice(data, prices);
   changeImageByParams(data, form);
   checkInvalidRadio(data, form);
   setEventListeners(data, form, images, prices);
-  // eslint-disable-next-line no-undef
-  console.log(document.querySelector(".t702 .t-input-group"));
 }
 
 function setEventListeners(data, form, images, prices) {
@@ -57,7 +53,6 @@ function setColorListener(data, images, { COLOR_RADIOS, ...form }) {
     radio.addEventListener("change", () => {
       data.color = radio.value;
       data.imgName = data.color[0] + data.size;
-      console.log(data.imgName);
       data.imgSrc = images[data.imgName];
       changeImageByParams(data, form);
     });

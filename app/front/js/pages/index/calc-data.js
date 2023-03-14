@@ -1,10 +1,8 @@
 const CALC_DATA = {
   color: "",
   size: 0,
-  prevSize: 0,
   imgName: "",
   imgSrc: "",
-  prevImgSrc: "",
   casset: 0,
   cassetAmount: 0,
   totalAmount: 0,
