@@ -30,21 +30,22 @@ const CALC_DATA = {
 function changeImageByParams({ imgSrc }, { IMG }) {
   IMG.src = imgSrc;
 }
-function setInitialState(data, form, images) {
+function setInitialState(data, form, images, prices) {
   data.color = form.COLOR_RADIOS.find((radio) => radio.checked).value;
   data.size = +form.SIZE_SELECT.value;
   data.prevSize = +form.SIZE_SELECT.value;
   data.imgName = data.color[0] + data.size;
   data.imgSrc = images[data.imgName];
   data.prevImgSrc = data.imgSrc;
-
+  getAmpulaPrice(data, prices);
   changeImageByParams(data, form);
-  setEventListeners(data, form, images);
+  checkInvalidRadio(data, form);
+  setEventListeners(data, form, images, prices);
 }
 
-function setEventListeners(data, form, images) {
+function setEventListeners(data, form, images, prices) {
   setColorListener(data, images, form);
-  setSizeListener(data, images, form);
+  setSizeListener(data, images, form, prices);
   setCassetSizeListener(data, form);
   setAmountCassetListener(data, form);
   setAdditionalServListener(data, form);
@@ -56,20 +57,35 @@ function setColorListener(data, images, { COLOR_RADIOS, ...form }) {
     radio.addEventListener("change", () => {
       data.color = radio.value;
       data.imgName = data.color[0] + data.size;
+      console.log(data.imgName);
       data.imgSrc = images[data.imgName];
       changeImageByParams(data, form);
     });
   });
 }
 
-function setSizeListener(data, images, { SIZE_SELECT, ...form }) {
-  SIZE_SELECT.addEventListener("change", () => {
-    if (SIZE_SELECT.value) {
-      const sizeNname = +SIZE_SELECT.value === 2.5 ? "2p5" : SIZE_SELECT.value;
-      data.size = +SIZE_SELECT.value;
-      data.imgName = data.color[0] + sizeNname;
+function getAmpulaPrice(data, prices) {
+  console.log(prices);
+  console.log(data.imgName);
+  data.price = prices[data.imgName];
+}
+
+function setSizeListener(data, images, form, prices) {
+  form.SIZE_SELECT.addEventListener("change", () => {
+    if (form.SIZE_SELECT.value) {
+      const sizeName =
+        form.SIZE_SELECT.value === "2.5" ? "2p5" : +form.SIZE_SELECT.value;
+      data.size = sizeName;
+      data.imgName = data.color[0] + sizeName;
       data.imgSrc = images[data.imgName];
+      checkInvalidRadio(data, form);
+      const cassetDrop = form.AMOUNT_RADIOS.find((radio) => radio.checked);
+      if (!cassetDrop) {
+        changeCassetSize(data, 0, form);
+      }
       changeImageByParams(data, form);
+      getAmpulaPrice(data, prices);
+      updatePrice(data, form);
     }
   });
 }
@@ -85,12 +101,17 @@ function changeAmountCaption(
   AMOUNT_CAPTION.textContent = `${cassetAmount} кассет * ${casset} шт в кассете = ${totalAmount} ампул`;
 }
 
+function changeCassetSize(data, value, form) {
+  data.casset = value;
+  setTotalAmount(data);
+  changeAmountCaption(data, form);
+  updatePrice(data, form);
+}
+
 function setCassetSizeListener(data, { AMOUNT_RADIOS, ...form }) {
   AMOUNT_RADIOS.forEach((radio) => {
     radio.addEventListener("change", () => {
-      data.casset = +radio.value;
-      setTotalAmount(data);
-      changeAmountCaption(data, form);
+      changeCassetSize(data, +radio.value, form);
     });
   });
 }
@@ -100,17 +121,31 @@ function setAmountCassetListener(data, { AMOUNT_CASSETS, ...form }) {
     data.cassetAmount = +AMOUNT_CASSETS.value;
     setTotalAmount(data);
     changeAmountCaption(data, form);
+    updatePrice(data, form);
   });
 }
 
-function setAdditionalServListener(data, { UPAKOVKA }) {
+function setAdditionalServListener(data, { UPAKOVKA, ...form }) {
   UPAKOVKA.addEventListener("change", () => {
     data.packing = UPAKOVKA.checked
       ? "Упаковать в товарный вид"
       : "Без упаковки";
+    updatePrice(data, form);
   });
 }
 
+function printPrice({ totalPrice }, { PRICE }) {
+  PRICE.textContent = `${numberWithSpaces(totalPrice)} ₽`;
+}
+
+function updatePrice(data, form) {
+  const packPrice =
+    data.packing !== "Без упаковки"
+      ? data.casset * data.price * data.cassetAmount
+      : 0;
+  data.totalPrice = data.totalAmount * data.price + packPrice;
+  printPrice(data, form);
+}
 function setSubmitListener(data, { SUBMIT }) {
   SUBMIT.addEventListener("click", (e) => {
     e.preventDefault();
@@ -118,4 +153,62 @@ function setSubmitListener(data, { SUBMIT }) {
   });
 }
 
-setInitialState(CALC_DATA, BTR_FORM_FIELDS, IMAGES_SOURCES);
+function canselDisabledRadios(radios) {
+  radios.forEach((radio) => {
+    radio.removeAttribute("disabled");
+    radio.parentNode.nextSibling.style.opacity = 1;
+  });
+}
+
+function setInvalidRadio(filters, radios, data, form) {
+  canselDisabledRadios(radios);
+  const newArr = radios.filter((radio) => filters.indexOf(radio.id) >= 0);
+  newArr.forEach((radio) => {
+    radio.setAttribute("disabled", true);
+    radio.parentNode.nextSibling.style.opacity = 0.3;
+    if (radio.checked) {
+      radio.checked = false;
+    }
+  });
+}
+function checkInvalidRadio({ size, ...data }, { AMOUNT_RADIOS, ...form }) {
+  let filterArr = [];
+  switch (`${size}`) {
+    case "2":
+      filterArr = ["amount2", "amount3"];
+      setInvalidRadio(filterArr, AMOUNT_RADIOS, data);
+      break;
+    case "2p5":
+      filterArr = ["amount1", "amount2", "amount3"];
+      setInvalidRadio(filterArr, AMOUNT_RADIOS, data);
+      break;
+    case "4":
+      filterArr = ["amount2", "amount3"];
+      setInvalidRadio(filterArr, AMOUNT_RADIOS, data);
+      break;
+    case "5":
+      filterArr = ["amount1", "amount2", "amount3"];
+      setInvalidRadio(filterArr, AMOUNT_RADIOS, data);
+      break;
+    case "10":
+      filterArr = ["amount1", "amount2", "amount5"];
+      setInvalidRadio(filterArr, AMOUNT_RADIOS, data);
+      break;
+    case "15":
+      filterArr = ["amount1", "amount2", "amount5"];
+      setInvalidRadio(filterArr, AMOUNT_RADIOS, data);
+      break;
+    case "20":
+      filterArr = ["amount1", "amount2", "amount3"];
+      setInvalidRadio(filterArr, AMOUNT_RADIOS, data);
+      break;
+    case "50":
+      filterArr = ["amount3", "amount5"];
+      setInvalidRadio(filterArr, AMOUNT_RADIOS, data);
+      break;
+    default:
+      break;
+  }
+}
+
+setInitialState(CALC_DATA, BTR_FORM_FIELDS, IMAGES_SOURCES, PRICES);
