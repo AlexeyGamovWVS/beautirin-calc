@@ -39,6 +39,8 @@ function setInitialState(data, form, images, prices) {
   changeImageByParams(data, form);
   checkInvalidRadio(data, form);
   setEventListeners(data, form, images, prices);
+  // eslint-disable-next-line no-undef
+  console.log(document.querySelector(".t702 .t-input-group"));
 }
 
 function setEventListeners(data, form, images, prices) {
