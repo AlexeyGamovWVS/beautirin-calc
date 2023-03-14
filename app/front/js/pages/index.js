@@ -16,6 +16,15 @@ import {
   changeImageByParams,
 } from "./index/utils";
 import CALC_DATA from "./index/calc-data";
+import {
+  amountCassetField,
+  cassetField,
+  colorField,
+  packingField,
+  sizeField,
+  totalAmountField,
+  totalPriceField,
+} from "./index/tilda-fields";
 
 // INITIAL STATE START
 
@@ -101,8 +110,13 @@ function setAdditionalServListener(data, { UPAKOVKA, ...form }) {
 
 function setSubmitListener(data, { SUBMIT }) {
   SUBMIT.addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log(data);
+    colorField.value = data.color;
+    sizeField.value = data.size;
+    cassetField.value = data.casset;
+    amountCassetField.value = data.cassetAmount;
+    totalAmountField.value = data.totalAmount;
+    packingField.value = data.packing;
+    totalPriceField.value = data.totalPrice;
   });
 }
 
