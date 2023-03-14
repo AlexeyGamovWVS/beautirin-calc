@@ -33,13 +33,45 @@
     gap: 16px;
     cursor: pointer;
   }
+  &__radio-set {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  &__field-with-caption {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+  }
+  &__caption {
+    @include text12;
+  }
+  &__divider {
+    height: 1px;
+    width: 100%;
+    background-color: $main;
+  }
+  &__pricebox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__price {
+    @include title3;
+  }
 }
-.btr-form__radio-set {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.btr-text-input {
+  @include text14;
+  &::placeholder {
+    @include text12;
+  }
 }
 .btr-radio {
+  &_type_full {
+    align-self: start;
+    transform: translate(0, 5px);
+  }
   &__control {
     display: block;
     margin-right: 8px;
@@ -49,7 +81,21 @@
     @include text16;
     margin-right: 48px;
     cursor: pointer;
+    &_type_additional {
+      display: flex;
+      flex-direction: column;
+      row-gap: 8px;
+    }
   }
+  &__caption {
+    display: block;
+    @include text12;
+    color: $text_grey;
+  }
+}
+
+.btr-option {
+  @include text14;
 }
 
 .btr-imagebox {

@@ -1,6 +1,15 @@
 @import "../../../vendor/fonts/fonts.css";
 @import "./colors.scss";
 
+@mixin title3 {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $title_black;
+  line-height: 1.4;
+  font-size: 24px;
+}
+
 @mixin title4 {
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-weight: bold;
